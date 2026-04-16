@@ -10,7 +10,7 @@ def index():
 @app.route('/trips', methods=['GET'])
 def trips():
     trips = Trip.get_all()
-    return trips
+    return jsonify(trips)
 
 @app.route('/trip', methods=['POST'])
 def save_trip():

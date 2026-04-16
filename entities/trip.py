@@ -10,7 +10,10 @@ class Trip:
         self.latitude = latitude
         self.longitude = longitude
 
+    @staticmethod
     def get_all():
+        connection = None
+        cursor = None
         try:
             connection = get_connection()
             cursor = connection.cursor(dictionary=True)
@@ -19,10 +22,14 @@ class Trip:
         except Exception as ex:
             print(ex)
         finally:
-            cursor.close()
-            connection.close()
+            if cursor:
+                cursor.close()
+            if connection:
+                connection.close()
 
     def save(self):
+        connection = None
+        cursor = None
         try:
             connection = get_connection()
             cursor = connection.cursor(dictionary=True)
@@ -33,5 +40,7 @@ class Trip:
         except Exception as ex:
             print(ex)
         finally:
-            cursor.close()
-            connection.close()
+            if cursor:
+                cursor.close()
+            if connection:
+                connection.close()
