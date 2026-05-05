@@ -5,16 +5,16 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def index():
-    return jsonify ({"success":True, "message":"Hello World"}),200
+    return jsonify({"success": True, "message": "Hello World"}), 200
 
 @app.route('/trips', methods=['GET'])
 def trips():
     trips = Trip.get_all()
     return jsonify(trips)
 
-@app.route('/trip', methods=['POST'])
+@app.route('/trips', methods=['POST'])
 def save_trip():
-    data= request.json
+    data = request.json
     trip = Trip(name=data['name'],
                 city=data['city'],
                 latitude=data['latitude'],
